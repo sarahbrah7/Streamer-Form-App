@@ -8,3 +8,12 @@ class Streamer(models.Model):
 
     def __str__(self):
         return self.streamer_name
+
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'name': self.streamer_name,
+            'twitch': self.platform,
+            'stream': self.last_stream,
+            'rating': self.rating,
+        }
