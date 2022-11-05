@@ -11,6 +11,7 @@ def index(request: HttpRequest) -> HttpResponse:
     })
 
 def streamers_api(request):
+    #this is the GET method
     if request.method == 'GET':
         return JsonResponse({
             'streamers': [
