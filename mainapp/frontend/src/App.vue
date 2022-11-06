@@ -1,7 +1,7 @@
 <template>
   <div>
-  <!-- <button @click="fetchStreamers">Fetch Streamers</button> -->
     <h1>My Streamers</h1>
+    <button @click="fetchStreamers" class="btn btn-sm btn-success mt-3">Fetch Streamers</button>
     <ul v-if="streamers.length > 0">
       <li 
         v-for="streamer in streamers"
@@ -11,23 +11,36 @@
     <h4 v-else>
       You do not have any streamers at the moment
     </h4>
+    <HelloWorld />
   </div>
 </template>
 
 <script>
-export default{
-  data() {
-    return {
-      streamers: [],
-    }
-  },
-  methods : {
-    async mounted() {
-      //perform an ajax request to fetch the list of streamers
-      let response = await fetch("http://localhost:8000/api/streamers");
-      let data = await response.json();
-      this.streamers = data.streamers;
-    }
+import HelloWorld from './components/HelloWorld.vue'
+
+  export default{
+    components: { HelloWorld },
+    data() {
+        return {
+            streamers: [],
+        }
+    },
+    methods: {
+        // async fetchStreamers() {
+        //     //perform an ajax request to fetch the list of streamers
+        //     let response = await fetch("http://localhost:8080/api/streamers");
+        //     let data = await response.json();
+        //     this.streamers = data.streamers;
+        // }
+        fetchStreamers() {
+          fetch("http://localhost:8080/api/streamers")
+          .then((response) => {
+            return response.json()
+          })
+          .then((data) => {
+            this.streamers = data.streamers;
+          })
+        }
+    },
   }
-}
 </script>

@@ -41,8 +41,3 @@ def streamer_api(request: HttpRequest, streamer_id: int) -> HttpResponse:
 
     if request.method == 'GET':
         return JsonResponse(streamer.to_dict())
-
-# def streamer_view(request: HttpRequest) -> HttpResponse:
-#     form = StreamerForm()
-#     context = {'form': form}
-#     return render(request, 'streamer/details.html', context)
