@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from mainapp.views import index, streamers_api
+from mainapp.views import index, streamers_api, streamer_api
 
 urlpatterns = [
     path('', index),
     path('api/streamers', streamers_api),
+    path('api/streamers/<int:streamer_id>', streamer_api, name="streamer api"),
 ]
