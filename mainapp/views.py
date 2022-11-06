@@ -19,7 +19,7 @@ def streamers_api(request: HttpRequest) -> HttpResponse:
                 streamer.to_dict() for streamer in Streamer.objects.all()
             ]
         })
-    # if request.method == 'POST':
+    if request.method == 'POST':
     #     # need to create a new recipe
     #     form = StreamerForm(request.POST)
     #     if form.is_valid():
@@ -34,9 +34,13 @@ def streamers_api(request: HttpRequest) -> HttpResponse:
     #             streamer.to_dict
     #         ]
     #     })
+        pass
 
 def streamer_api(request: HttpRequest, streamer_id: int) -> HttpResponse:
     streamer = get_object_or_404(Streamer, id=streamer_id)
+
+    if request.method == 'GET':
+        return JsonResponse(streamer.to_dict())
 
 # def streamer_view(request: HttpRequest) -> HttpResponse:
 #     form = StreamerForm()
