@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>My Streamers</h1>
-    <button @click="fetchStreamers" class="btn btn-sm btn-success mt-3">Fetch Streamers</button>
+    <button @click="fetchStreamers" class="btn btn-outline-alert btn-success mt-3">Fetch Streamers</button>
     <ul v-if="streamers.length > 0">
       <li 
         v-for="streamer in streamers"
@@ -22,24 +22,16 @@ import HelloWorld from './components/HelloWorld.vue'
     components: { HelloWorld },
     data() {
         return {
+            streamer: '',
             streamers: [],
         }
     },
     methods: {
-        // async fetchStreamers() {
-        //     //perform an ajax request to fetch the list of streamers
-        //     let response = await fetch("http://localhost:8080/api/streamers");
-        //     let data = await response.json();
-        //     this.streamers = data.streamers;
-        // }
-        fetchStreamers() {
-          fetch("http://localhost:8080/api/streamers")
-          .then((response) => {
-            return response.json()
-          })
-          .then((data) => {
+        async fetchStreamers() {
+            //perform an ajax request to fetch the list of streamers
+            let response = await fetch("http://localhost:8080/api/streamers");
+            let data = await response.json();
             this.streamers = data.streamers;
-          })
         }
     },
   }
