@@ -19,6 +19,10 @@
 import HelloWorld from './components/HelloWorld.vue'
 
   export default{
+    //shows streamers without requiring a button onClick
+    created(){
+      this.fetchStreamers()
+    },
     components: { HelloWorld },
     data() {
         return {
