@@ -33,9 +33,23 @@ def streamers_api(request: HttpRequest) -> HttpResponse:
         )
         client.save()
         return JsonResponse({
-            'data': [data['streamer_name']]
+            'data': [data]
         })
-
+    if request.method == 'PUT':
+        data = json.loads(request.body.decode('utf-8'))
+        client = Streamer.objects.get(id = data['streamer_id'])
+        client.platform = data['platform']
+        client.save()
+        return JsonResponse({
+            'Streamer': [data]
+        })
+    if request.method == 'DELETE':
+        data = json.loads(request.body.decode('utf-8'))
+        Streamer.objects.get(id = data['streamer_id']).delete()
+        return JsonResponse({
+            'Streamer': [data]
+        })
+        
 def streamer_api(request: HttpRequest, streamer_id: int) -> HttpResponse:
     streamer = get_object_or_404(Streamer, id=streamer_id)
 
