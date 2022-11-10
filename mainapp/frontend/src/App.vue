@@ -21,7 +21,9 @@
     <h4 v-else>
       You do not have any streamers at the moment
     </h4>
-    <HelloWorld />
+    <div class="form-inline">
+      <HelloWorld />
+    </div>
   </div>
 </template>
 
