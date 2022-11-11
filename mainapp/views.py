@@ -13,16 +13,18 @@ def index(request: HttpRequest) -> HttpResponse:
         'title': title,
         'n': Streamer.objects.all().count()
     })
+
 @csrf_exempt
 def streamers_api(request: HttpRequest) -> HttpResponse:
     form = StreamerForm()
-    #this is the GET method
+    #This is the GET method
     if request.method == 'GET':
         return JsonResponse({
             'streamers': [
                 streamer.to_dict() for streamer in Streamer.objects.all()
             ]
         })
+    #This is the POST method
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         client = Streamer.objects.create(
@@ -35,17 +37,19 @@ def streamers_api(request: HttpRequest) -> HttpResponse:
         return JsonResponse({
             'data': [data]
         })
+    #This is the PUT method
     if request.method == 'PUT':
         data = json.loads(request.body.decode('utf-8'))
         client = Streamer.objects.get(id = data['streamer_id'])
-        client.platform = data['platform']
+        client.platform = data['platform'] #Updates the platform 
         client.save()
         return JsonResponse({
             'Streamer': [data]
         })
+    #This is the DELETE method
     if request.method == 'DELETE':
         data = json.loads(request.body.decode('utf-8'))
-        Streamer.objects.get(id = data['streamer_id']).delete()
+        Streamer.objects.get(id = data['streamer_id']).delete() #Deletes the selected data based on id
         return JsonResponse({
             'Streamer': [data]
         })

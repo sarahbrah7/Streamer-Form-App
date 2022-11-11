@@ -16,7 +16,7 @@
             </div>
             <div class="form-group mb-4 row">
                 <label for="rating" class="col-sm-3 col-form-label">Streamer Rating:</label>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <select class="form-control" type="number" id="rating" v-model="rating">
                         <option>1</option>
                         <option>2</option>
@@ -48,14 +48,16 @@
         data() {
             return {
                 streamer_name: this.streamer_name,
-                platform: this.platform,
+                platform: false,
                 last_stream: this.last_stream,
                 rating: this.rating,
                 current_streamer: this.current_streamer,
             }
         },
         methods: {
+            //this is the POST request where it awaits for the AJAX 
             async saveNewName() {
+                //perform an ajax request to fetch the list of streamers
                 const response = await fetch("http://localhost:8000/api/streamers", {
                     method : 'POST',
                     body: JSON.stringify({

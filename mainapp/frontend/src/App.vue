@@ -82,14 +82,16 @@ import HelloWorld from './components/HelloWorld.vue'
         }
     },
     methods: {
+      //this is the GET method
         async fetchStreamers() {
             //perform an ajax request to fetch the list of streamers
             let response = await fetch("http://localhost:8000/api/streamers")
             let data = await response.json()
             this.streamers = data.streamers
         },
+        //this is the PUT method
         async changePlatform(platform, last_stream, rating, streamer_name, streamer_id) {
-          platform = !platform
+          platform = !platform //switch platform to opposite value (from true to false)
           const response = await fetch("http://localhost:8000/api/streamers", {
               method : 'PUT',
               body: JSON.stringify({
@@ -102,8 +104,9 @@ import HelloWorld from './components/HelloWorld.vue'
             })
             let data = await response.json()
             this.streamer = data.streamer
-            this.fetchStreamers()
+            this.fetchStreamers() //updates the form with new platform
         },
+        //this is the DELETE method
         async deleteStreamer(streamer_id){
           let response = await fetch("http://localhost:8000/api/streamers", {
               method: 'DELETE',
@@ -113,7 +116,7 @@ import HelloWorld from './components/HelloWorld.vue'
           })
           let data = await response.json()
           this.streamer = data.streamer
-          this.fetchStreamers()
+          this.fetchStreamers() //updates the form without the deleted data
         }
     },
   }
