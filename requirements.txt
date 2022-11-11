@@ -1,0 +1,5 @@
+asgiref==3.5.2
+certifi @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_0ek9yztvu3/croot/certifi_1665076692562/work/certifi
+Django==4.1.2
+django-cors-headers==3.13.0
+sqlparse==0.4.3
