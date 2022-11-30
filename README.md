@@ -12,3 +12,5 @@ An app which uses GET, POST, PUT, and DELETE requests for a form about streamers
   - Run ```npm install```
   - Run ```npm run dev```
 - The web application can be accessed [here](http://localhost:5173/)
+
+(admin access is admin admin)
